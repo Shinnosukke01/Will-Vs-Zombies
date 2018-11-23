@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
-
+//Cambia el nombre de la clase al tuyo "playerController"
 public class playerController : MonoBehaviour {
 	public float walkSpeed;
 	public float jumpImpulse;
@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour {
 	private bool iAmIntheGround;
 	private bool facingRight;
 
-	//private Animator anim;
+	private Animator anim;
 
 	// =============================
 	void Start () {
@@ -25,7 +25,7 @@ public class playerController : MonoBehaviour {
 		this.movement = new Vector2();
 		this.iAmIntheGround = false;
 
-		//this.anim = this.GetComponent<Animator>();
+		this.anim = this.GetComponent<Animator>();
 		this.facingRight = true;
 	}
 	// =============================
@@ -42,8 +42,8 @@ public class playerController : MonoBehaviour {
 			this.Flip();
 		}
 
-		//this.anim.SetFloat("HorSpeed", Mathf.Abs(this.body.velocity.x));
-		//this.anim.SetFloat("VertSpeed", Mathf.Abs (this.body.velocity.y));
+		this.anim.SetFloat("HorSpeed", Mathf.Abs(this.body.velocity.x));
+		this.anim.SetFloat("VertSpeed", Mathf.Abs (this.body.velocity.y));
 
 		if(Physics2D.OverlapCircle(this.groundCheckPoint.position, 0.02f, this.whatIsGround)){
 			this.iAmIntheGround = true;
@@ -72,10 +72,10 @@ public class playerController : MonoBehaviour {
 	}
 	// =============================
 	void Flip(){
-		//Vector3 scale = this.transform.localScale;
-		//scale.x *= (-1);
-		//this.transform.localScale = scale;
-		this.transform.Rotate(Vector3.up, 180);
+		Vector3 scale = this.transform.localScale;
+		scale.x *= (-1);
+		this.transform.localScale = scale;
+		//this.transform.Rotate(Vector3.up, 180);
 	}
 	// =============================
 	public void OnGetKill(){
